@@ -6,12 +6,14 @@ import { Link, useForm, usePage } from '@inertiajs/react';
 import { Transition } from '@headlessui/react';
 import { FormEventHandler } from 'react';
 import { PageProps } from '@/types';
+import { Dropdown } from 'react-bootstrap';
 
 export default function UpdateProfileInformation({ mustVerifyEmail, status, className = '' }: { mustVerifyEmail: boolean, status?: string, className?: string }) {
     const user = usePage<PageProps>().props.auth.user;
 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
         name: user.name,
+        gender: user.gender,
         email: user.email,
     });
 
@@ -60,6 +62,30 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                         required
                         autoComplete="username"
                     />
+
+                    <InputError className="mt-2" message={errors.email} />
+                </div>
+
+                <div>
+                    <InputLabel htmlFor="gender" value="gender" />
+
+                    <Dropdown>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                            {data.gender}
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                            <Dropdown.Item active={user.gender === 'male'} onClick={() => setData('gender', 'male')}>
+                                Male
+                            </Dropdown.Item>
+                            <Dropdown.Item active={user.gender === 'female'} onClick={() => setData('gender', 'female')}>
+                                Female
+                            </Dropdown.Item>
+                            <Dropdown.Item active={user.gender === 'non-binary'} onClick={() => setData('gender', 'non-binary')}>
+                                We'r not in Thailand, man...
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
 
                     <InputError className="mt-2" message={errors.email} />
                 </div>
