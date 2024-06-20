@@ -6,13 +6,15 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { Dropdown } from "react-bootstrap";
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import DropdownButton from "react-bootstrap/DropdownButton";
+import DatePicker from "react-datepicker";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
         email: "",
-        gender: "",
+        gender: "male",
+        birthday: "Wed Jul 28 1993",
         password: "",
         password_confirmation: "",
     });
@@ -24,13 +26,13 @@ export default function Register() {
     }, []);
 
     useEffect(() => {
-        console.log(data);
-        
-    })
+        if (!data.birthday) return
+        console.log(data.birthday);
+    });
 
     const submit: FormEventHandler = (e) => {
-        e.preventDefault();  
-        post(route("register"));        
+        e.preventDefault();
+        post(route("register"));
     };
 
     return (
@@ -71,26 +73,51 @@ export default function Register() {
 
                     <InputError message={errors.email} className="mt-2" />
                 </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="gender" value="gender" />
-                    <DropdownButton id="dropdown-basic-button" title={data.gender}>
-
-                        <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1" onClick={() => setData('gender', 'male')}>
-                                Male
-                            </Dropdown.Item>
-                            <Dropdown.Item href="#/action-2" onClick={() => setData('gender', 'female')}>
-                                Female
-                            </Dropdown.Item>
-                            <Dropdown.Item href="#/action-3" onClick={() => setData('gender', 'non-binary')}>
-                                No non-binaries for today, sorry!
-                            </Dropdown.Item>
-                        </Dropdown.Menu>
-                    </DropdownButton>
-                    <InputError message={errors.password} className="mt-2" />
+                <div className="flex justify-between">
+                    <div className="mt-4">
+                        <InputLabel htmlFor="gender" value="Gender" />
+                        <DropdownButton
+                            id="dropdown-basic-button"
+                            title={data.gender}
+                        >
+                            <Dropdown.Menu>
+                                <Dropdown.Item
+                                    href="#/action-1"
+                                    onClick={() => setData("gender", "male")}
+                                >
+                                    Male
+                                </Dropdown.Item>
+                                <Dropdown.Item
+                                    href="#/action-2"
+                                    onClick={() => setData("gender", "female")}
+                                >
+                                    Female
+                                </Dropdown.Item>
+                                <Dropdown.Item
+                                    href="#/action-3"
+                                    onClick={() =>
+                                        setData("gender", "non-binary")
+                                    }
+                                >
+                                    No non-binaries for today, sorry!
+                                </Dropdown.Item>
+                            </Dropdown.Menu>
+                        </DropdownButton>
+                        <InputError
+                            message={errors.password}
+                            className="mt-2"
+                        />
+                    </div>
+                    <div className="mt-4">
+                        <InputLabel htmlFor="birthday" value="Birthday" />
+                        <DatePicker
+                            showIcon
+                            className='border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm '
+                            selected={new Date(data.birthday)}
+                            onChange={(date) => setData("birthday", date ? date.toDateString() : '')}
+                        />
+                    </div>
                 </div>
-
                 <div className="mt-4">
                     <InputLabel htmlFor="password" value="Password" />
 
