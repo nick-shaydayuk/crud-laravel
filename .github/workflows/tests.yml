@@ -22,10 +22,23 @@ jobs:
       - name: Copy .env
         run: |
           cp .env.ci .env
+          cp .env.ci .env.testing
       - name: Run composer
         run: |
           composer install --no-interaction
       - name: Run test suite
         run: |
           php artisan test
+        env:
+          DB_DATABASE: crud_laravel
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: crud_laravel
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=5s --health-retries=3
 

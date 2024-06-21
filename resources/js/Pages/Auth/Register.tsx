@@ -25,11 +25,6 @@ export default function Register() {
         };
     }, []);
 
-    useEffect(() => {
-        if (!data.birthday) return
-        console.log(data.birthday);
-    });
-
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
         post(route("register"));
