@@ -14,7 +14,7 @@ export default function Register() {
         name: "",
         email: "",
         gender: "male",
-        birthday: "Wed Jul 28 1993",
+        birthday: new Date(),
         password: "",
         password_confirmation: "",
     });
@@ -98,10 +98,7 @@ export default function Register() {
                                 </Dropdown.Item>
                             </Dropdown.Menu>
                         </DropdownButton>
-                        <InputError
-                            message={errors.password}
-                            className="mt-2"
-                        />
+                        
                     </div>
                     <div className="mt-4">
                         <InputLabel htmlFor="birthday" value="Birthday" />
@@ -109,7 +106,7 @@ export default function Register() {
                             showIcon
                             className='border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm '
                             selected={new Date(data.birthday)}
-                            onChange={(date) => setData("birthday", date ? date.toDateString() : '')}
+                            onChange={(date) => setData("birthday", date ?? new Date())}
                         />
                     </div>
                 </div>

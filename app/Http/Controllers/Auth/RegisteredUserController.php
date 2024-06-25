@@ -34,16 +34,17 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'gender' => 'required|string|max:255',
-            'birthday' => 'required|string|max:255',
+            'birthday' => 'required|date',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
+        $birthday = date_create($request->birthday);
+        $formattedBirthday = $birthday->format('Y-m-d');
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'gender' => $request->gender,
-            'birthday' => $request->birthday,
+            'birthday' => $formattedBirthday,
             'password' => Hash::make($request->password),
         ]);
 

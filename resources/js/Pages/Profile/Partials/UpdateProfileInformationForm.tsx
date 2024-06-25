@@ -24,7 +24,7 @@ export default function UpdateProfileInformation({
         useForm({
             name: user.name,
             gender: user.gender,
-            birthday: user.birthday,
+            birthday: new Date(user.birthday),
             email: user.email,
         });
 
@@ -119,7 +119,7 @@ export default function UpdateProfileInformation({
                         className="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm "
                         selected={new Date(data.birthday) ?? new Date()}
                         onChange={(date) =>
-                            setData("birthday", date ? date.toDateString() : "")
+                            setData("birthday", date ?? new Date())
                         }
                     />
                 </div>
