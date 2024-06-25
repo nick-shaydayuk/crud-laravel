@@ -26,7 +26,7 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'gender' => fake()->name(),
-            'birthday' => fake()->name(),
+            'birthday' => date_format(date_create("2013-03-15"),"d/m/y"),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
