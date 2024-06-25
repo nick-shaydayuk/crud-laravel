@@ -33,6 +33,8 @@ test('profile information can be updated', function () {
     $this->assertSame('Test User', $user->name);
     $this->assertSame('test@example.com', $user->email);
     $this->assertNull($user->email_verified_at);
+    $this->assertSame('female', $user->gender);
+    $this->assertSame('15/03/13', $user->birthday);
 });
 
 test('email verification status is unchanged when the email address is unchanged', function () {
@@ -44,7 +46,7 @@ test('email verification status is unchanged when the email address is unchanged
             'name' => 'Test User',
             'email' => $user->email,
             'gender' => 'female',
-            'birthday' => date_format(date_create("2013-03-15"),"d/m/y"),
+            'birthday' => '15/03/13',
         ]);
 
     $response
