@@ -1,0 +1,5 @@
+{
+  "preset": "laravel",
+  "disabled": ["QualifiedNamesOnlyForClassName", "RemoveLeadingSlashNamespaces"],
+  "excluded": ["tests/"]
+}
