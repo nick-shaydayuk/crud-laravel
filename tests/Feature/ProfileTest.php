@@ -21,7 +21,7 @@ test('profile information can be updated', function () {
             'name' => 'Test User',
             'email' => 'test@example.com',
             'gender' => 'female',
-            'birthday' => "2022-12-31 00:00:00",
+            'birthday' => '2022-12-31 00:00:00',
         ]);
 
     $response
@@ -34,7 +34,7 @@ test('profile information can be updated', function () {
     $this->assertSame('test@example.com', $user->email);
     $this->assertNull($user->email_verified_at);
     $this->assertSame('female', $user->gender);
-    $this->assertSame("2022-12-31 00:00:00", $user->birthday);
+    $this->assertSame('2022-12-31 00:00:00', $user->birthday);
 });
 
 test('email verification status is unchanged when the email address is unchanged', function () {
@@ -46,7 +46,7 @@ test('email verification status is unchanged when the email address is unchanged
             'name' => 'Test User',
             'email' => $user->email,
             'gender' => 'female',
-            'birthday' => "2022-12-31",
+            'birthday' => '2022-12-31',
         ]);
 
     $response

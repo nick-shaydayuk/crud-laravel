@@ -13,7 +13,7 @@ test('new users can register', function () {
         'name' => 'Test User',
         'email' => 'test@example.com',
         'gender' => 'male',
-        'birthday' => "2022-12-31",
+        'birthday' => '2022-12-31',
         'password' => 'password',
         'password_confirmation' => 'password',
     ]);
