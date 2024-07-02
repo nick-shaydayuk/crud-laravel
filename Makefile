@@ -1,5 +1,4 @@
 setup:
-	cp .env.example .env
 	composer install
 	yarn
 	sudo chmod o+w ./storage/ -R
