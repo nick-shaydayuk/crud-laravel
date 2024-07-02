@@ -10,3 +10,7 @@ clear-cache:
 	php artisan route:clear
 	php artisan config:clear
 	php artisan cache:clear
+lint:
+	./vendor/bin/duster lint
+lint-fix:
+	./vendor/bin/duster fix
