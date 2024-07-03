@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres
+    restart: unless-stopped
+    container_name: user-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=${DB_DATABASE}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./storage/docker/_db:/var/lib/postgresql/data
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: user-app
+    user: ${UID}:${GID}
+    restart: unless-stopped
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - db
+      - frontend
+      
+  frontend:
+    container_name: user-frontend
+    build: .
+    ports:
+      - "5173:5173"
+    command: yarn dev
+    volumes:
+      - .:/var/www/html

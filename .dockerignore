@@ -1,0 +1,9 @@
+/storage/docker/_db
+.git
+node_modules/
+Dockerfile
+docker-compose.yml
+README.md
+TODO.md
+docker/
+
