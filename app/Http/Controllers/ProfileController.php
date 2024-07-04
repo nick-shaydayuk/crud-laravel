@@ -34,11 +34,6 @@ class ProfileController extends Controller
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
-        // $birthday = date_create($request->birthday);
-        // $formattedBirthday = $birthday->format('Y-m-d');
-        // //dd(date($request->birthday));
-        // dd($request->birthday);
-        // $request->user()->birthday = $formattedBirthday;
         $request->user()->save();
 
         return Redirect::route('profile.edit');

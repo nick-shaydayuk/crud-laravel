@@ -14,7 +14,7 @@ export default function Register() {
         name: "",
         email: "",
         gender: "male",
-        birthday: new Date(),
+        birthday: new Date().toUTCString(),
         password: "",
         password_confirmation: "",
     });
@@ -106,7 +106,7 @@ export default function Register() {
                             showIcon
                             className='border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm '
                             selected={new Date(data.birthday)}
-                            onChange={(date) => setData("birthday", date ?? new Date())}
+                            onChange={(date) => setData("birthday", date?.toUTCString() ?? new Date().toUTCString())}
                         />
                     </div>
                 </div>
