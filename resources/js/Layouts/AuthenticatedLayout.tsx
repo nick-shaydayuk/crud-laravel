@@ -25,8 +25,8 @@ export default function Authenticated({ user, header, children }: PropsWithChild
                                 <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                                     Dashboard
                                 </NavLink>
-                                <NavLink href={route('people.index')} active={route().current('people.index')}>
-                                    People
+                                <NavLink href={route('person.index')} active={route().current('person.index')}>
+                                    Person
                                 </NavLink>
                             </div>
                         </div>

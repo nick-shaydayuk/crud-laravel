@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\PeopleController;
+use App\Http\Controllers\PersonController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -36,11 +36,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::/* middleware('auth')-> */ resource('people', PeopleController::class)->except(['destroy']);
-Route::post('people/{id}/restore', [PeopleController::class, 'restore'])->name('people.restore');
-Route::delete('people/{id}/force-delete', [PeopleController::class, 'forceDelete'])->name('people.forceDelete');
-Route::patch('people/{id}/ban', [PeopleController::class, 'ban'])->name('people.ban');
-Route::patch('people/{id}/unban', [PeopleController::class, 'unban'])->name('people.unban');
-Route::delete('people/{id}/delete', [PeopleController::class, 'delete'])->name('people.delete');
+Route::/* middleware('auth')-> */ resource('person', PersonController::class)->except(['destroy']);
+Route::post('person/{id}/restore', [PersonController::class, 'restore'])->name('person.restore');
+Route::delete('person/{id}/force-delete', [PersonController::class, 'forceDelete'])->name('person.forceDelete');
+Route::patch('person/{id}/ban', [PersonController::class, 'ban'])->name('person.ban');
+Route::patch('person/{id}/unban', [PersonController::class, 'unban'])->name('person.unban');
+Route::delete('person/{id}/delete', [PersonController::class, 'delete'])->name('person.delete');
 
 require __DIR__ . '/auth.php';

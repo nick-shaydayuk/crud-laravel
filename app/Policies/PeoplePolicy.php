@@ -2,10 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\People;
+use App\Models\Person;
 use App\Models\User;
 
-class PeoplePolicy
+class PersonPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -18,7 +18,7 @@ class PeoplePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, People $people): bool
+    public function view(User $user, Person $person): bool
     {
         return true;
     }
@@ -34,7 +34,7 @@ class PeoplePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, People $people): bool
+    public function update(User $user, Person $person): bool
     {
         return true;
     }
@@ -42,7 +42,7 @@ class PeoplePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, People $people): bool
+    public function delete(User $user, Person $person): bool
     {
         return true;
     }
@@ -50,7 +50,7 @@ class PeoplePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, People $people): bool
+    public function restore(User $user, Person $person): bool
     {
         return true;
     }
@@ -58,7 +58,7 @@ class PeoplePolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, People $people): bool
+    public function forceDelete(User $user, Person $person): bool
     {
         return true;
     }

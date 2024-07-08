@@ -8,7 +8,7 @@ i18n.use(HttpBackend)
     .use(initReactI18next)
     .init({
         fallbackLng: "ru",
-        debug: true,
+        debug: false,
         interpolation: {
             escapeValue: false,
         },

@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('people', function (Blueprint $table) {
+        Schema::table('person', function (Blueprint $table) {
             $table->string('name')->nullable();
             $table->string('email')->unique()->nullable();
-            $table->string('state')->default('active')->after('avatar')->nullable();
             $table->date('birthday')->nullable();
         });
     }
@@ -24,7 +23,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('people', function (Blueprint $table) {
+        Schema::table('person', function (Blueprint $table) {
             //
         });
     }

@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'people',
+        'passwords' => 'person',
     ],
 
     /*
@@ -28,7 +28,7 @@ return [
     | here which uses session storage and the Eloquent user provider.
     |
     | All authentication drivers have a user provider. This defines how the
-    | people are actually retrieved out of your database or other storage
+    | person are actually retrieved out of your database or other storage
     | mechanisms used by this application to persist your user's data.
     |
     | Supported: "session"
@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'people',
+            'provider' => 'person',
         ],
     ],
 
@@ -48,7 +48,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | All authentication drivers have a user provider. This defines how the
-    | people are actually retrieved out of your database or other storage
+    | person are actually retrieved out of your database or other storage
     | mechanisms used by this application to persist your user's data.
     |
     | If you have multiple user tables or models you may configure multiple
@@ -60,14 +60,14 @@ return [
     */
 
     'providers' => [
-        'people' => [
+        'person' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
 
-        // 'people' => [
+        // 'person' => [
         //     'driver' => 'database',
-        //     'table' => 'people',
+        //     'table' => 'person',
         // ],
     ],
 
@@ -91,8 +91,8 @@ return [
     */
 
     'passwords' => [
-        'people' => [
-            'provider' => 'people',
+        'person' => [
+            'provider' => 'person',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

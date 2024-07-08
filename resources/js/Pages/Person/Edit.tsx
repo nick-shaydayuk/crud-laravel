@@ -1,15 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "@inertiajs/inertia-react";
 import { Form, Button, Container } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
-const Create: React.FC = () => {
+interface User {
+    id: number;
+    name: string;
+    email: string;
+    gender: string;
+    birthday: string;
+    avatar: string | null;
+}
+
+interface EditProps {
+    user: User;
+}
+
+const Edit: React.FC<EditProps> = ({ user }) => {
+    console.log(user);
+    
     const { t } = useTranslation();
-    const { data, setData, post, processing, errors } = useForm({
-        name: "",
-        email: "",
-        gender: "",
-        birthday: "",
+    const { data, setData, patch, processing, errors } = useForm({
+        name: user.name ?? '',
+        email: user.email ?? '',
+        gender: user.gender ?? 'not specified',
+        birthday: user.birthday ?? '2000-01-01',
         avatar: null as File | null,
     });
 
@@ -19,17 +34,19 @@ const Create: React.FC = () => {
         Object.keys(data).forEach(key => {
             formData.append(key, data[key as keyof typeof data] as string | Blob);
         });
-        post(route('people.store'), {
-            data: formData,
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            }
-        });        
+        console.log(JSON.stringify(user, null, 2));
+        
+        // patch(route(`person.update/${user.id}`), {
+        //     data: formData,
+        //     headers: {
+        //         'X-HTTP-Method-Override': 'PUT'
+        //     }
+        // });
     };
 
     return (
         <Container>
-            <h1 className="my-4">{t('create_user')}</h1>
+            <h1 className="my-4">{t('edit_user')}</h1>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                     <Form.Label>{t('name')}</Form.Label>
@@ -60,7 +77,6 @@ const Create: React.FC = () => {
                         onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setData("gender", e.target.value)}
                         required
                     >
-                        <option value="">{t('select_gender')}</option>
                         <option value="male">{t('male')}</option>
                         <option value="female">{t('female')}</option>
                     </Form.Select>
@@ -83,13 +99,14 @@ const Create: React.FC = () => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setData("avatar", e.target.files ? e.target.files[0] : null)}
                     />
                     {errors.avatar && <div className="text-danger">{errors.avatar}</div>}
+                    {user.avatar && <img src={`/storage/${user.avatar}`} alt="Avatar" style={{ width: '100px', marginTop: '10px' }} />}
                 </Form.Group>
                 <Button variant="primary" type="submit" disabled={processing}>
-                    {t('create_user')}
+                    {t('save')}
                 </Button>
             </Form>
         </Container>
     );
 };
 
-export default Create;
+export default Edit;

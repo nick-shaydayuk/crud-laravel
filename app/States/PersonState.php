@@ -5,7 +5,7 @@ namespace App\States;
 use Spatie\ModelStates\State;
 use Spatie\ModelStates\StateConfig;
 
-abstract class PeopleState extends State
+abstract class PersonState extends State
 {
     public static function config(): StateConfig
     {

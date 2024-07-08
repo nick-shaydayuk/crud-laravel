@@ -23,46 +23,46 @@ const Ziggy = {
         "profile.edit": { uri: "profile", methods: ["GET", "HEAD"] },
         "profile.update": { uri: "profile", methods: ["PATCH"] },
         "profile.destroy": { uri: "profile", methods: ["DELETE"] },
-        "people.index": { uri: "people", methods: ["GET", "HEAD"] },
-        "people.create": { uri: "people/create", methods: ["GET", "HEAD"] },
-        "people.store": { uri: "people", methods: ["POST"] },
-        "people.show": {
-            uri: "people/{person}",
+        "person.index": { uri: "person", methods: ["GET", "HEAD"] },
+        "person.create": { uri: "person/create", methods: ["GET", "HEAD"] },
+        "person.store": { uri: "person", methods: ["POST"] },
+        "person.show": {
+            uri: "person/{person}",
             methods: ["GET", "HEAD"],
             parameters: ["person"],
         },
-        "people.edit": {
-            uri: "people/{person}/edit",
+        "person.edit": {
+            uri: "person/{person}/edit",
             methods: ["GET", "HEAD"],
             parameters: ["person"],
         },
-        "people.update": {
-            uri: "people/{person}",
+        "person.update": {
+            uri: "person/{person}",
             methods: ["PUT", "PATCH"],
             parameters: ["person"],
         },
-        "people.restore": {
-            uri: "people/{id}/restore",
+        "person.restore": {
+            uri: "person/{id}/restore",
             methods: ["POST"],
             parameters: ["id"],
         },
-        "people.forceDelete": {
-            uri: "people/{id}/force-delete",
+        "person.forceDelete": {
+            uri: "person/{id}/force-delete",
             methods: ["DELETE"],
             parameters: ["id"],
         },
-        "people.ban": {
-            uri: "people/{id}/ban",
+        "person.ban": {
+            uri: "person/{id}/ban",
             methods: ["PATCH"],
             parameters: ["id"],
         },
-        "people.unban": {
-            uri: "people/{id}/unban",
+        "person.unban": {
+            uri: "person/{id}/unban",
             methods: ["PATCH"],
             parameters: ["id"],
         },
-        "people.delete": {
-            uri: "people/{id}/delete",
+        "person.delete": {
+            uri: "person/{id}/delete",
             methods: ["DELETE"],
             parameters: ["id"],
         },

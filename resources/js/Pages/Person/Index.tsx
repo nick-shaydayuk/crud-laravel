@@ -17,30 +17,30 @@ interface User {
 }
 
 interface IndexProps {
-    people: User[];
+    person: User[];
 }
 
-const Index: React.FC<IndexProps> = ({ people }) => {
+const Index: React.FC<IndexProps> = ({ person }) => {
     const { t } = useTranslation();
 
     const handleDelete = (id: number) => {
-        Inertia.post(route("people.delete", { id }));
+        Inertia.delete(route("person.delete", { id }));
     };
 
     const handleRestore = (id: number) => {
-        Inertia.post(route("people.restore", { id }));
+        Inertia.post(route("person.restore", { id }));
     };
 
     const handleForceDelete = (id: number) => {
-        Inertia.post(route("people.forceDelete", { id }));
+        Inertia.delete(route("person.forceDelete", { id }));
     };
 
     const handleBan = (id: number) => {
-        Inertia.post(route("people.ban", { id }));
+        Inertia.patch(route("person.ban", { id }));
     };
 
     const handleUnban = (id: number) => {
-        Inertia.post(route("people.unban", { id }));
+        Inertia.patch(route("person.unban", { id }));
     };
 
     return (
@@ -62,17 +62,17 @@ const Index: React.FC<IndexProps> = ({ people }) => {
                         Dashboard
                     </NavLink>
                     <NavLink
-                        href={route("people.index")}
-                        active={route().current("people.index")}
+                        href={route("person.index")}
+                        active={route().current("person.index")}
                     >
-                        People
+                        Person
                     </NavLink>
                     <NavLink href={route('profile.edit')}>Profile</NavLink>
                 </div>
             </div>
             <Button
                 variant="primary"
-                href={route("people.create")}
+                href={route("person.create")}
                 className="mb-3 mt-3"
             >
                 {t("create_user")}
@@ -90,7 +90,7 @@ const Index: React.FC<IndexProps> = ({ people }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {people.map((user, index) => (
+                    {person.map((user, index) => (
                         <tr key={user.id}>
                             <td>{index + 1}</td>
                             <td>
@@ -144,7 +144,7 @@ const Index: React.FC<IndexProps> = ({ people }) => {
                                     <>
                                         <Button
                                             variant="warning"
-                                            href={route("people.edit", {
+                                            href={route("person.edit", {
                                                 id: user.id,
                                             })}
                                             className="me-2"
@@ -188,7 +188,7 @@ const Index: React.FC<IndexProps> = ({ people }) => {
                 </tbody>
             </Table>
             <h1>rrr</h1>
-            {people.map((person) => (
+            {person.map((person) => (
                 <p key={person.id}>{JSON.stringify(person, null, 2)}</p>
             ))}
         </Container>

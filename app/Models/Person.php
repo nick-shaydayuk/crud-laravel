@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use App\States\PeopleState;
+use App\States\PersonState;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Spatie\ModelStates\HasStates;
 
-class People extends Model
+class Person extends Model
 {
     use HasFactory, HasStates, Notifiable, SoftDeletes;
 
@@ -46,6 +46,6 @@ class People extends Model
     protected $casts = [
         'password' => 'hashed',
         'birthday' => 'date:Y-m-d',
-        //'state' => 'Active'/* PeopleState::class */,
+        'state' => PersonState::class,
     ];
 }

@@ -8,14 +8,14 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::table('people', function (Blueprint $table) {
+        Schema::table('person', function (Blueprint $table) {
             $table->dateTime('birthday')->nullable();
         });
     }
 
     public function down(): void
     {
-        Schema::table('people', function (Blueprint $table) {
+        Schema::table('person', function (Blueprint $table) {
             //
         });
     }

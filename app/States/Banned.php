@@ -2,10 +2,10 @@
 
 namespace App\States;
 
-class Active extends PeopleState
+class Banned extends PersonState
 {
     public function label(): string
     {
-        return 'Active';
+        return 'banned';
     }
 }
