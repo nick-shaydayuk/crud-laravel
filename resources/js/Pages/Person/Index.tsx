@@ -144,9 +144,7 @@ const Index: React.FC<IndexProps> = ({ person }) => {
                                     <>
                                         <Button
                                             variant="warning"
-                                            href={route("person.edit", {
-                                                id: user.id,
-                                            })}
+                                            href={route("person.edit", user.id)}
                                             className="me-2"
                                         >
                                             {t("edit_user")}

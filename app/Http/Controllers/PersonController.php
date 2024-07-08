@@ -8,6 +8,7 @@ use App\States\Active;
 use App\States\Banned;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
+use App\Http\Resources\PersonResource;
 
 class PersonController extends Controller
 {
@@ -50,8 +51,10 @@ class PersonController extends Controller
 
     public function edit(Person $user)
     {
-        dd($user);
-        return Inertia::render('Person/Edit', ['user' => Person::find($user)]);
+        //dd($user);
+        return inertia('Person/Edit', [
+            'user' => new PersonResource($user),
+        ]);
     }
 
     public function update($request, Person $user)

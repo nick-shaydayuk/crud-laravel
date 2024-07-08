@@ -36,12 +36,8 @@ const Edit: React.FC<EditProps> = ({ user }) => {
         });
         console.log(JSON.stringify(user, null, 2));
         
-        // patch(route(`person.update/${user.id}`), {
-        //     data: formData,
-        //     headers: {
-        //         'X-HTTP-Method-Override': 'PUT'
-        //     }
-        // });
+        patch(route("user.update", user.id));
+
     };
 
     return (
