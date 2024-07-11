@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useForm } from "@inertiajs/inertia-react";
+import { useForm } from "@inertiajs/react";
 import { Form, Button, Container } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
@@ -16,9 +16,7 @@ interface EditProps {
     user: User;
 }
 
-const Edit: React.FC<EditProps> = ({ user }) => {
-    console.log(user);
-    
+const Edit: React.FC<EditProps> = ({ user }) => {    
     const { t } = useTranslation();
     const { data, setData, patch, processing, errors } = useForm({
         name: user.name ?? '',
@@ -30,15 +28,16 @@ const Edit: React.FC<EditProps> = ({ user }) => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const formData = new FormData();
-        Object.keys(data).forEach(key => {
-            formData.append(key, data[key as keyof typeof data] as string | Blob);
-        });
         console.log(JSON.stringify(user, null, 2));
         
-        patch(route("user.update", user.id));
+        patch(route("person.update", user.id));
 
     };
+
+    useEffect(() => {
+        console.log(data);
+        
+    }, [data])
 
     return (
         <Container>

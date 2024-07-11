@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import { Table, Container, Button, NavLink } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import ApplicationLogo from '@/Components/ApplicationLogo';
-import { Link } from '@inertiajs/react';
+import { Link, router } from '@inertiajs/react';
 
 interface User {
     id: number;
@@ -17,31 +17,38 @@ interface User {
 }
 
 interface IndexProps {
-    person: User[];
+    person: User[]
 }
 
-const Index: React.FC<IndexProps> = ({ person }) => {
+const Index: React.FC<IndexProps> = ({ person }) => {    
     const { t } = useTranslation();
 
     const handleDelete = (id: number) => {
-        Inertia.delete(route("person.delete", { id }));
+        console.log(1);
+        
+        router.delete(route("person.delete", id));
     };
 
     const handleRestore = (id: number) => {
-        Inertia.post(route("person.restore", { id }));
+        router.post(route("person.restore", id));
     };
 
     const handleForceDelete = (id: number) => {
-        Inertia.delete(route("person.forceDelete", { id }));
+        console.log(2);
+        router.delete(route("person.forceDelete", id));
     };
 
     const handleBan = (id: number) => {
-        Inertia.patch(route("person.ban", { id }));
+        router.post(route("person.ban", id));
     };
 
     const handleUnban = (id: number) => {
-        Inertia.patch(route("person.unban", { id }));
+        router.post(route("person.unban", id));
     };
+    useEffect(() => {
+        console.log(person);
+        
+    }, [])
 
     return (
         <Container>

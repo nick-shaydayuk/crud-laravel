@@ -36,11 +36,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::/* middleware('auth')-> */ resource('person', PersonController::class)->except(['destroy']);
+Route::/* middleware('auth')-> */ resource('person', PersonController::class);
 Route::post('person/{id}/restore', [PersonController::class, 'restore'])->name('person.restore');
 Route::delete('person/{id}/force-delete', [PersonController::class, 'forceDelete'])->name('person.forceDelete');
-Route::patch('person/{id}/ban', [PersonController::class, 'ban'])->name('person.ban');
-Route::patch('person/{id}/unban', [PersonController::class, 'unban'])->name('person.unban');
+Route::post('person/{id}/ban', [PersonController::class, 'ban'])->name('person.ban');
+Route::post('person/{id}/unban', [PersonController::class, 'unban'])->name('person.unban');
 Route::delete('person/{id}/delete', [PersonController::class, 'delete'])->name('person.delete');
 
 require __DIR__ . '/auth.php';

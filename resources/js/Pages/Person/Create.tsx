@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "@inertiajs/inertia-react";
+import { useForm } from "@inertiajs/react";
 import { Form, Button, Container } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 

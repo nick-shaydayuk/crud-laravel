@@ -19,7 +19,7 @@ class PersonResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'created_at' => (new Carbon($this->created_at))->format('Y-m-d'),
+            'birthday' => (new Carbon($this->birthday))->format('Y-m-d'),
             'state' => $this->state,
             'avatar' => $this->avatar,
         ];
