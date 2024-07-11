@@ -18,31 +18,47 @@ interface EditProps {
 
 const Edit: React.FC<EditProps> = ({ user }) => {    
     const { t } = useTranslation();
-    const { data, setData, patch, processing, errors } = useForm({
+    const { data, setData, post, processing, errors } = useForm({
         name: user.name ?? '',
         email: user.email ?? '',
-        gender: user.gender ?? 'not specified',
+        gender: user.gender ?? 'male',
         birthday: user.birthday ?? '2000-01-01',
-        avatar: null as File | null,
+        avatar: user.avatar ?? null as File | null,
     });
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log(JSON.stringify(user, null, 2));
+        // console.log(JSON.stringify(data, null, 2));
+        // console.log(data.avatar);
+        const formData = new FormData();
+        console.log(1);
         
-        patch(route("person.update", user.id));
+        Object.keys(data).forEach((key) => {
+            formData.append(
+                key,
+                data[key as keyof typeof data] as string | Blob
+            );
+        });
+        console.log(data);
+        post(route("person.update", { id: user.id }), {
+            data: formData,
+            headers: {
+                "X-HTTP-Method-Override": "PUT",
+            },
+        });
 
+        console.log(3);
     };
 
     useEffect(() => {
-        console.log(data);
+        console.log(data.avatar);
         
-    }, [data])
+    }, [data.avatar])
 
     return (
         <Container>
             <h1 className="my-4">{t('edit_user')}</h1>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} noValidate>
                 <Form.Group className="mb-3">
                     <Form.Label>{t('name')}</Form.Label>
                     <Form.Control
@@ -50,7 +66,7 @@ const Edit: React.FC<EditProps> = ({ user }) => {
                         value={data.name}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setData("name", e.target.value)}
                         placeholder={t('name')}
-                        required
+                        
                     />
                     {errors.name && <div className="text-danger">{errors.name}</div>}
                 </Form.Group>
@@ -61,7 +77,7 @@ const Edit: React.FC<EditProps> = ({ user }) => {
                         value={data.email}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setData("email", e.target.value)}
                         placeholder={t('email')}
-                        required
+                        
                     />
                     {errors.email && <div className="text-danger">{errors.email}</div>}
                 </Form.Group>
@@ -70,7 +86,7 @@ const Edit: React.FC<EditProps> = ({ user }) => {
                     <Form.Select
                         value={data.gender}
                         onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setData("gender", e.target.value)}
-                        required
+                        
                     >
                         <option value="male">{t('male')}</option>
                         <option value="female">{t('female')}</option>
@@ -83,7 +99,7 @@ const Edit: React.FC<EditProps> = ({ user }) => {
                         type="date"
                         value={data.birthday}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setData("birthday", e.target.value)}
-                        required
+                        
                     />
                     {errors.birthday && <div className="text-danger">{errors.birthday}</div>}
                 </Form.Group>
@@ -99,6 +115,7 @@ const Edit: React.FC<EditProps> = ({ user }) => {
                 <Button variant="primary" type="submit" disabled={processing}>
                     {t('save')}
                 </Button>
+                1{JSON.stringify(errors)}
             </Form>
         </Container>
     );

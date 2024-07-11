@@ -3,8 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Password;
 
 class UpdatePersonRequest extends FormRequest
 {
@@ -23,15 +21,13 @@ class UpdatePersonRequest extends FormRequest
      */
     public function rules(): array
     {
-        //dd($this->person->id);
-        $userId = $this->route('person') ? $this->route('person')->id : null;
-        //dd($userId);
+        //dd($this->request);
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $userId,
+            'email' => 'required|email|unique:users,email',
             'gender' => 'required|in:male,female',
             'birthday' => 'required|date',
-            'avatar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'avatar' => 'exclude_unless:string,nullable|image|mimes:jpg,jpeg,png|max:2048',
         ];
     }
 }

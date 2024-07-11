@@ -44,9 +44,10 @@ class PersonController extends Controller
     public function store(StorePersonRequest $request)
     {
         $data = $request->validated();
-
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('images', 'public');
+        //dd($data);
+        if ($request->hasFile('avatar')) {
+            $data['avatar'] = $request->file('avatar')->store('avatars', 'public');
+            //dd($data['avatar']);
         }
 
         Person::create($data);
@@ -69,11 +70,7 @@ class PersonController extends Controller
      */
     public function edit(Person $person)
     {
-        //dd($person);
         return Inertia::render('Person/Edit', ['user' => $person]);
-        /* return inertia('Person/Edit', [
-            'person' => new PersonResource($person),
-        ]); */
     }
 
     /**
@@ -81,11 +78,12 @@ class PersonController extends Controller
      */
     public function update(UpdatePersonRequest $request, Person $person)
     {
-        
+        //dd($request->validated());
         $data = $request->validated();
-        dd($data);
+        //dd($data);
         if ($request->hasFile('avatar')) {
             $data['avatar'] = $request->file('avatar')->store('avatars', 'public');
+            //dd($data['avatar']);
         }
 
         $person->update($data);

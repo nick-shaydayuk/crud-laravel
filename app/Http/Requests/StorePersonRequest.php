@@ -22,7 +22,11 @@ class StorePersonRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'gender' => 'required|in:male,female',
+            'birthday' => 'required|date',
+            'avatar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ];
     }
 }

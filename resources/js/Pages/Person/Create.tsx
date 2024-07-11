@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "@inertiajs/react";
 import { Form, Button, Container } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
@@ -12,14 +12,16 @@ const Create: React.FC = () => {
         birthday: "",
         avatar: null as File | null,
     });
-
+    useEffect(() => {
+        console.log(data.avatar);
+        
+    }, [data.avatar])
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const formData = new FormData();
         Object.keys(data).forEach(key => {
             formData.append(key, data[key as keyof typeof data] as string | Blob);
         });
-        console.log(1);
         
         post(route('person.store'), {
             data: formData,
@@ -27,7 +29,6 @@ const Create: React.FC = () => {
                 'Content-Type': 'multipart/form-data',
             }
         });
-        console.log(2);
     };
 
     return (
