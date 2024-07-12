@@ -7,7 +7,6 @@ import { Transition } from "@headlessui/react";
 import { FormEventHandler } from "react";
 import { PageProps } from "@/types";
 import { Dropdown } from "react-bootstrap";
-import DatePicker from "react-datepicker";
 
 export default function UpdateProfileInformation({
     mustVerifyEmail,
@@ -114,14 +113,6 @@ export default function UpdateProfileInformation({
 
                 <div>
                     <InputLabel htmlFor="birthday" value="Birthday" />
-                    <DatePicker
-                        showIcon
-                        className="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm "
-                        selected={new Date(data.birthday) ?? new Date()}
-                        onChange={(date) =>
-                            setData("birthday", date?.toUTCString() ?? new Date().toUTCString())
-                        }
-                    />
                 </div>
 
                 {mustVerifyEmail && user.email_verified_at === null && (

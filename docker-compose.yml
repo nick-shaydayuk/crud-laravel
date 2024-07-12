@@ -2,7 +2,7 @@ services:
   db:
     image: postgres
     restart: unless-stopped
-    container_name: user-db
+    container_name: db
     ports:
       - "5432:5432"
     environment:
@@ -10,7 +10,7 @@ services:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
-      - ./storage/docker/_db:/var/lib/postgresql/data
+      - ./postgresql/data:/var/lib/postgresql/data
   app:
     build:
       context: ./
@@ -20,6 +20,9 @@ services:
     restart: unless-stopped
     volumes:
       - ./:/var/www
+    ports:
+      - "8000:8000"
+    working_dir: /var/www
     depends_on:
       - db
       - frontend

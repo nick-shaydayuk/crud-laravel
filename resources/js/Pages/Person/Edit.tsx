@@ -28,32 +28,20 @@ const Edit: React.FC<EditProps> = ({ user }) => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // console.log(JSON.stringify(data, null, 2));
-        // console.log(data.avatar);
         const formData = new FormData();
-        console.log(1);
-        
         Object.keys(data).forEach((key) => {
             formData.append(
                 key,
                 data[key as keyof typeof data] as string | Blob
             );
         });
-        console.log(data);
         post(route("person.update", { id: user.id }), {
             data: formData,
             headers: {
                 "X-HTTP-Method-Override": "PUT",
             },
         });
-
-        console.log(3);
     };
-
-    useEffect(() => {
-        console.log(data.avatar);
-        
-    }, [data.avatar])
 
     return (
         <Container>

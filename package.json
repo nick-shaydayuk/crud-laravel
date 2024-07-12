@@ -36,7 +36,6 @@
         "inertiajs": "^0.0.0",
         "install": "^0.13.0",
         "react-bootstrap": "^2.10.2",
-        "react-datepicker": "^7.1.0",
         "react-i18next": "^14.1.2",
         "ziggy": "^2.4.0",
         "ziggy-js": "^2.2.1"

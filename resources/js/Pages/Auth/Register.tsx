@@ -7,7 +7,6 @@ import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { Dropdown } from "react-bootstrap";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import DatePicker from "react-datepicker";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -102,12 +101,6 @@ export default function Register() {
                     </div>
                     <div className="mt-4">
                         <InputLabel htmlFor="birthday" value="Birthday" />
-                        <DatePicker
-                            showIcon
-                            className='border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm '
-                            selected={new Date(data.birthday)}
-                            onChange={(date) => setData("birthday", date?.toUTCString() ?? new Date().toUTCString())}
-                        />
                     </div>
                 </div>
                 <div className="mt-4">
