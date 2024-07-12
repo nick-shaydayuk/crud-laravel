@@ -1,6 +1,4 @@
-FROM php:8.3-apache
-
-#WORKDIR /var/www/html
+FROM php:8.3.9-fpm
 
 RUN apt-get update && apt-get install -y \
   git \
@@ -42,7 +40,3 @@ RUN cp .env.example .env \
 RUN export NVM_DIR="$HOME/.nvm" \
   && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" \
   && npm run build
-
-EXPOSE 80
-
-CMD ["apache2-foreground"]
