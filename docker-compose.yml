@@ -14,16 +14,16 @@ services:
   
   db:
     container_name: db
-    image: postgres:12
+    image: postgres:16.3
     ports:
       - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: strongpassword
+      POSTGRES_DB: postgres
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata16:/var/lib/postgresql/data
 
 volumes:
-  pgdata: {}
+  pgdata16: {}
     
