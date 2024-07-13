@@ -13,14 +13,14 @@ class Person extends Model
 {
     use HasFactory, HasStates, Notifiable, SoftDeletes;
 
+    protected $table = 'person';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-
-     protected $table = 'person';
-     protected $fillable = [
+    protected $fillable = [
         'name',
         'email',
         'gender',

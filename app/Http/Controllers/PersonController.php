@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePersonRequest;
 use App\Http\Requests\UpdatePersonRequest;
-use App\Http\Resources\PersonResource;
 use App\Models\Person;
 use App\States\Active as Active;
 use App\States\Banned as Banned;
@@ -17,15 +16,9 @@ class PersonController extends Controller
      */
     public function index()
     {
-
         $person = Person::all();
-        return Inertia::render('Person/Index', ['person' => $person]);
 
-        // return inertia('Person/Index', [
-        //     'person' => PersonResource::collection($persons),
-        //     'queryParams' => request()->query() ?: null,
-        //     'success' => session('success'),
-        // ]);
+        return Inertia::render('Person/Index', ['person' => $person]);
     }
 
     /**
@@ -33,6 +26,7 @@ class PersonController extends Controller
      */
     public function create()
     {
+
         return inertia('Person/Create');
     }
 
@@ -42,12 +36,9 @@ class PersonController extends Controller
     public function store(StorePersonRequest $request)
     {
         $data = $request->validated();
-        //dd($data);
         if ($request->hasFile('avatar')) {
             $data['avatar'] = $request->file('avatar')->store('avatars', 'public');
-            //dd($data['avatar']);
         }
-
         Person::create($data);
 
         return to_route('person.index')->with('success', 'Создан новый пользователь!');
@@ -68,6 +59,7 @@ class PersonController extends Controller
      */
     public function edit(Person $person)
     {
+
         return Inertia::render('Person/Edit', ['user' => $person]);
     }
 
@@ -76,14 +68,10 @@ class PersonController extends Controller
      */
     public function update(UpdatePersonRequest $request, Person $person)
     {
-        //dd($request->validated());
         $data = $request->validated();
-        //dd($data);
         if ($request->hasFile('avatar')) {
             $data['avatar'] = $request->file('avatar')->store('avatars', 'public');
-            //dd($data['avatar']);
         }
-
         $person->update($data);
 
         return to_route('person.index')->with('success', "Данные пользователя \"{$person->name}\" успешно обновлены!");
@@ -96,17 +84,15 @@ class PersonController extends Controller
     {
         $person = Person::findOrFail($id);
         $person->delete();
+
         return redirect(route('person.index'));
     }
 
     public function ban($id)
     {
-        //dd($id);
         $user = Person::findOrFail($id);
         $user->state->transitionTo(Banned::class);
-        //dd($user);
-        
-        
+
         return redirect(route('person.index'));
     }
 
@@ -114,7 +100,7 @@ class PersonController extends Controller
     {
         $user = Person::findOrFail($id);
         $user->state->transitionTo(Active::class);
-        //return Inertia::render('Person/Index', ['person' => Person::all()]);
+
         return redirect(route('person.index'));
     }
 }
