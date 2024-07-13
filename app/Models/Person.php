@@ -18,7 +18,9 @@ class Person extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [
+
+     protected $table = 'person';
+     protected $fillable = [
         'name',
         'email',
         'gender',

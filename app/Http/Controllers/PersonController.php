@@ -17,9 +17,7 @@ class PersonController extends Controller
      */
     public function index()
     {
-        $query = Person::query();
 
-        $persons = $query->paginate(10);
         $person = Person::all();
         return Inertia::render('Person/Index', ['person' => $person]);
 

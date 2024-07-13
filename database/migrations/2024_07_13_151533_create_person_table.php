@@ -13,8 +13,14 @@ return new class extends Migration
     {
         Schema::create('person', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->softDeletes();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('gender')->defaultValue('male');
+            $table->date('birthday')->defaultValue('22-01-2015');
+            $table->string('state');
+            $table->string('avatar')->nullable();
+            $table->timestamps();
         });
     }
 
