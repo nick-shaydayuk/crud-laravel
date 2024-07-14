@@ -112,4 +112,4 @@ jobs:
         env:
           ANSIBLE_HOST_KEY_CHECKING: "false"
         run: |
-          ansible-playbook ansible/playbook.yml -i '158.160.132.201,' -u nyck1sha
+          ansible-playbook ansible/playbook.yml -i '158.160.132.201,' -u deployuser
