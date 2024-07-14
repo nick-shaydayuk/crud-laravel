@@ -24,15 +24,15 @@
         name: docker-compose
         state: present
 
-    # - name: Ensure Docker service is running
-    #   service:
-    #     name: docker
-    #     state: started
-    #     enabled: yes
+    - name: Ensure Docker service is running
+      service:
+        name: docker
+        state: started
+        enabled: yes
 
-    # - name: Check if Docker container exists
-    #   shell: docker ps -a --filter "name=crud-laravel" --format "{{'{{'}}.Names{{'}}'}}"
-    #   register: container_exists
+    - name: Check if Docker container exists
+      shell: docker ps -a --filter "name=crud-laravel" --format "{{'{{'}}.Names{{'}}'}}"
+      register: container_exists
 
     # - name: Stop existing Docker container
     #   docker_container:
