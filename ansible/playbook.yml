@@ -60,7 +60,7 @@
         state: started
         restart_policy: always
         ports:
-          - "80:80"
+          - "8000:8000"
 
     - name: Restart Docker
       service:
