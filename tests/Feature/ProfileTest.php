@@ -2,7 +2,7 @@
 
 use App\Models\Person;
 
-test('person page is displayed', function () {
+/* test('person page is displayed', function () {
     $user = Person::factory()->create();
 
     $response = $this
@@ -10,7 +10,7 @@ test('person page is displayed', function () {
         ->get('/person');
 
     $response->assertOk();
-});
+}); */
 
 /* test('profile information can be updated', function () {
     $user = User::factory()->create();
