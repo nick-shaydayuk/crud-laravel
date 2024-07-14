@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
+use App\States\Active;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\States\PersonState;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Person>
@@ -21,7 +21,7 @@ class PersonFactory extends Factory
             'name' => fake()->name(),
             'gender' => fake()->name(),
             'birthday' => date_format(date_create('2013-03-15'), 'd/m/y'),
-            'state' => PersonState::class,
+            'state' => Active::class,
             'avatar' => null,
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
