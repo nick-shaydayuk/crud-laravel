@@ -106,7 +106,7 @@ jobs:
       - name: Add SSH key
         uses: webfactory/ssh-agent@v0.5.3
         with:
-          ssh-private-key: ${{ secrets.PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
       - name: Run Ansible Playbook
         env:
