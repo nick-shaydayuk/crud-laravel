@@ -27,12 +27,12 @@
     - name: Copy Docker Compose file to the server
       copy:
         src: ../docker-compose.yml
-        dest: ~/crud-laravel/docker-compose.yml
+        dest: ~/docker-compose.yml
 
     - name: Pull and start Docker Compose services
       command: docker-compose up -d
       args:
-        chdir: ~/crud-laravel/docker-compose.yml
+        chdir: ~/docker-compose.yml
 
     - name: Restart Docker
       service:
