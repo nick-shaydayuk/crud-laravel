@@ -15,18 +15,18 @@ jobs:
       - uses: adambirds/docker-compose-action@v1.3.0
         with:
           services: |
-            mysql
+            postgres
           test-command: "php artisan test"
 
     services:
-      mysql:
-        image: mysql:8.0
+      postgres:
+        image: postgres:16.3
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_DATABASE: crud_laravel
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
         ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=5s --health-retries=3
+          - 5432:5432
 
   build_and_push:
     runs-on: ubuntu-latest
