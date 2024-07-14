@@ -24,23 +24,6 @@
         name: docker-compose
         state: present
 
-    - name: Ensure Docker service is running
-      service:
-        name: docker
-        state: started
-        enabled: yes
-
-    - name: Check if Docker container exists
-      shell: docker ps -a --filter "name=crud-laravel" --format "{{'{{'}}.Names{{'}}'}}"
-      register: container_exists
-      docker_container:
-        name: crud-laravel
-        image: nyck1sha/crud-laravel:latest
-        state: started
-        restart_policy: always
-        ports:
-          - "8000:8000"
-
     - name: Copy Docker Compose file to the server
       copy:
         src: ../docker-compose.yml
