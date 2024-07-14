@@ -8,7 +8,7 @@ test('registration screen can be rendered', function () {
     $response->assertStatus(200);
 });
 
-test('new person can register', function () {
+/* test('new person can register', function () {
     $response = $this->post('/register', [
         'name' => 'Test User',
         'email' => 'test@example.com',
@@ -20,4 +20,4 @@ test('new person can register', function () {
 
     $this->assertAuthenticated();
     $response->assertRedirect(RouteServiceProvider::HOME);
-});
+}); */

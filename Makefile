@@ -16,3 +16,5 @@ lint:
 	./vendor/bin/duster lint
 lint-fix:
 	./vendor/bin/duster fix
+test:
+	php artisan test

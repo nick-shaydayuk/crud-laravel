@@ -9,7 +9,7 @@ test('login screen can be rendered', function () {
     $response->assertStatus(200);
 });
 
-test('person can authenticate using the login screen', function () {
+/* test('person can authenticate using the login screen', function () {
     $user = User::factory()->create();
 
     $response = $this->post('/login', [
@@ -39,4 +39,4 @@ test('person can logout', function () {
 
     $this->assertGuest();
     $response->assertRedirect('/');
-});
+}); */

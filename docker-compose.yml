@@ -3,7 +3,7 @@ version: "3.9"
 services:
   app:
     container_name: app
-    image: nyck1sha/crud-laravel:1.0.0
+    image: nyck1sha/crud-laravel:latest
     build: .
     ports:
       - "8000:8000"
