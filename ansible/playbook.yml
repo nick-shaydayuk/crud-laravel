@@ -28,6 +28,11 @@
       copy:
         src: ../docker-compose.yml
         dest: ~/docker-compose.yml
+    
+    - name: Copy env file to the server
+      copy:
+        src: ../.env.example
+        dest: ~/.env
 
     - name: Pull and start Docker Compose services
       command: docker-compose up -d
