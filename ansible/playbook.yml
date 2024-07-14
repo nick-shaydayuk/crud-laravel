@@ -33,27 +33,6 @@
     - name: Check if Docker container exists
       shell: docker ps -a --filter "name=crud-laravel" --format "{{'{{'}}.Names{{'}}'}}"
       register: container_exists
-
-    # - name: Stop existing Docker container
-    #   docker_container:
-    #     name: crud-laravel
-    #     state: stopped
-    #     force_kill: yes
-    #   when: container_exists.stdout != ""
-
-    # - name: Remove existing Docker container
-    #   docker_container:
-    #     name: crud-laravel
-    #     state: absent
-    #   when: container_exists.stdout != ""
-
-    # - name: Pull the latest Docker image
-    #   docker_image:
-    #     name: nyck1sha/crud-laravel
-    #     tag: latest
-    #     source: pull
-
-    # - name: Run the Docker container
       docker_container:
         name: crud-laravel
         image: nyck1sha/crud-laravel:latest
@@ -70,7 +49,7 @@
     - name: Pull and start Docker Compose services
       command: docker-compose up -d
       args:
-        chdir: ~/crud-laravel/docker-compose.yml  # Указываем путь к файлу docker-compose.yml
+        chdir: ~/crud-laravel/docker-compose.yml
 
     - name: Restart Docker
       service:
