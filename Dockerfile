@@ -60,8 +60,6 @@ RUN cp .env.example .env \
     && chmod -R 777 /home/nick/crud-laravel/database \
     && php artisan key:generate
 
-RUN php artisan migrate:refresh
-
 RUN npm run build
 
 CMD php artisan serve --host=0.0.0.0 --port=8000
