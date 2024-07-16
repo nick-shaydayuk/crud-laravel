@@ -1,4 +1,4 @@
-name: Linting, Testing and Deployment
+name: Test & Build
 
 on:
   push:

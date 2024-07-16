@@ -13,7 +13,7 @@ class Person extends Model
 {
     use HasFactory, HasStates, Notifiable, SoftDeletes;
 
-    protected $table = 'person';
+    protected $table = 'people';
 
     /**
      * The attributes that are mass assignable.

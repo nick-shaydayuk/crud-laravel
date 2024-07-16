@@ -40,7 +40,7 @@ class PersonController extends Controller
         }
         Person::create($data);
 
-        return to_route('people.index')->with('success', 'Создан новый пользователь!');
+        return to_route('people.index');
     }
 
     /**
@@ -70,7 +70,7 @@ class PersonController extends Controller
         }
         $person->update($data);
 
-        return to_route('people.index')->with('success', "Данные пользователя \"{$person->name}\" успешно обновлены!");
+        return to_route('people.index');
     }
 
     /**

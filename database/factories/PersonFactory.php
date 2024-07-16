@@ -19,12 +19,11 @@ class PersonFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'gender' => fake()->name(),
-            'birthday' => date_format(date_create('2013-03-15'), 'd/m/y'),
+            'gender' => 'female',
+            'birthday' => date_format(date_create('2013-03-15'), 'Y/m/y'),
             'state' => Active::class,
             'avatar' => null,
             'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
         ];
     }
 }
