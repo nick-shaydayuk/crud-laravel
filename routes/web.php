@@ -25,8 +25,8 @@ Route::get('/', function () {
     ]);
 });
 
-Route::resource('persons', PersonController::class);
-Route::post('persons/{id}/ban', [PersonController::class, 'ban'])->name('persons.ban');
-Route::post('persons/{id}/unban', [PersonController::class, 'unban'])->name('persons.unban');
+Route::resource('people', PersonController::class);
+Route::post('people/{id}/ban', [PersonController::class, 'ban'])->name('people.ban');
+Route::post('people/{id}/unban', [PersonController::class, 'unban'])->name('people.unban');
 
 require __DIR__ . '/auth.php';

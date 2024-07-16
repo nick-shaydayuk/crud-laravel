@@ -23,19 +23,19 @@ const Index: React.FC<IndexProps> = ({ persons }) => {
     const { t } = useTranslation();
 
     const handleDelete = (id: number) => {        
-        router.delete(route("persons.destroy", id));
+        router.delete(route("people.destroy", id));
     };
 
     const handleRestore = (id: number) => {
-        router.post(route("persons.restore", id));
+        router.post(route("people.restore", id));
     };
 
     const handleBan = (id: number) => {
-        router.post(route("persons.ban", id));
+        router.post(route("people.ban", id));
     };
 
     const handleUnban = (id: number) => {
-        router.post(route("persons.unban", id));
+        router.post(route("people.unban", id));
     };
 
     return (
@@ -51,8 +51,8 @@ const Index: React.FC<IndexProps> = ({ persons }) => {
 
                 <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <NavLink
-                        href={route("persons.index")}
-                        active={route().current("persons.index")}
+                        href={route("people.index")}
+                        active={route().current("people.index")}
                     >
                         Person
                     </NavLink>
@@ -60,7 +60,7 @@ const Index: React.FC<IndexProps> = ({ persons }) => {
             </div>
             <Button
                 variant="primary"
-                href={route("persons.create")}
+                href={route("people.create")}
                 className="mb-3 mt-3"
             >
                 {t("create_user")}
@@ -124,14 +124,14 @@ const Index: React.FC<IndexProps> = ({ persons }) => {
                                     <>
                                         <Button
                                             variant="warning"
-                                            href={route("persons.edit", user.id)}
+                                            href={route("people.edit", user.id)}
                                             className="me-2"
                                         >
                                             {t("edit_user")}
                                         </Button>
                                         <Button
                                             variant="warning"
-                                            href={route("persons.show", user.id)}
+                                            href={route("people.show", user.id)}
                                             className="me-2"
                                         >
                                             {t("show_user")}

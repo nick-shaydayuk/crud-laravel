@@ -28,9 +28,9 @@ export default function Welcome({
                     </div>
                     <button
                         className="mt-6 text-xl font-semibold text-gray-900 dark:text-white"
-                        onClick={() => router.get("/persons")}
+                        onClick={() => router.get("/people")}
                     >
-                        PersonsView
+                        PeopleView
                     </button>
                     <div className="mt-16">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
