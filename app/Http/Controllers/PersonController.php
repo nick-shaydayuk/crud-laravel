@@ -26,7 +26,6 @@ class PersonController extends Controller
      */
     public function create()
     {
-
         return inertia('Persons/Create');
     }
 
@@ -49,9 +48,7 @@ class PersonController extends Controller
      */
     public function show(Person $person)
     {
-        return inertia('Persons/Show', [
-            'person' => $person
-        ]);
+        return inertia('Persons/Show', ['person' => $person]);
     }
 
     /**
@@ -59,7 +56,6 @@ class PersonController extends Controller
      */
     public function edit(Person $person)
     {
-
         return Inertia::render('Persons/Edit', ['person' => $person]);
     }
 
