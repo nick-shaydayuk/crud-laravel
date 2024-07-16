@@ -25,6 +25,7 @@ jobs:
       - name: Build
         uses: docker/bake-action@v4
       - run: |
+          cd ..
           php artisan key:generate
           make ci-test
 
