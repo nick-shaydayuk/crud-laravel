@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Inertia } from "@inertiajs/inertia";
 import { Table, Container, Button, NavLink } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import ApplicationLogo from '@/Components/ApplicationLogo';
@@ -17,38 +16,27 @@ interface User {
 }
 
 interface IndexProps {
-    person: User[]
+    persons: User[]
 }
 
-const Index: React.FC<IndexProps> = ({ person }) => {    
+const Index: React.FC<IndexProps> = ({ persons }) => {    
     const { t } = useTranslation();
 
-    const handleDelete = (id: number) => {
-        console.log(1);
-        
-        router.delete(route("person.delete", id));
+    const handleDelete = (id: number) => {        
+        router.delete(route("persons.destroy", id));
     };
 
     const handleRestore = (id: number) => {
-        router.post(route("person.restore", id));
-    };
-
-    const handleForceDelete = (id: number) => {
-        console.log(2);
-        router.delete(route("person.forceDelete", id));
+        router.post(route("persons.restore", id));
     };
 
     const handleBan = (id: number) => {
-        router.post(route("person.ban", id));
+        router.post(route("persons.ban", id));
     };
 
     const handleUnban = (id: number) => {
-        router.post(route("person.unban", id));
+        router.post(route("persons.unban", id));
     };
-    useEffect(() => {
-        console.log(person);
-        
-    }, [])
 
     return (
         <Container>
@@ -63,23 +51,16 @@ const Index: React.FC<IndexProps> = ({ person }) => {
 
                 <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <NavLink
-                        href={route("dashboard")}
-                        active={route().current("dashboard")}
-                    >
-                        Dashboard
-                    </NavLink>
-                    <NavLink
-                        href={route("person.index")}
-                        active={route().current("person.index")}
+                        href={route("persons.index")}
+                        active={route().current("persons.index")}
                     >
                         Person
                     </NavLink>
-                    <NavLink href={route('profile.edit')}>Profile</NavLink>
                 </div>
             </div>
             <Button
                 variant="primary"
-                href={route("person.create")}
+                href={route("persons.create")}
                 className="mb-3 mt-3"
             >
                 {t("create_user")}
@@ -97,7 +78,7 @@ const Index: React.FC<IndexProps> = ({ person }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {person.map((user, index) => (
+                    {persons.map((user, index) => (
                         <tr key={user.id}>
                             <td>{index + 1}</td>
                             <td>
@@ -138,20 +119,12 @@ const Index: React.FC<IndexProps> = ({ person }) => {
                                         >
                                             {t("restore_user")}
                                         </Button>
-                                        <Button
-                                            variant="danger"
-                                            onClick={() =>
-                                                handleForceDelete(user.id)
-                                            }
-                                        >
-                                            {t("delete_user_forever")}
-                                        </Button>
                                     </>
                                 ) : (
                                     <>
                                         <Button
                                             variant="warning"
-                                            href={route("person.edit", user.id)}
+                                            href={route("persons.edit", user.id)}
                                             className="me-2"
                                         >
                                             {t("edit_user")}
@@ -192,10 +165,6 @@ const Index: React.FC<IndexProps> = ({ person }) => {
                     ))}
                 </tbody>
             </Table>
-            <h1>rrr</h1>
-            {person.map((person) => (
-                <p key={person.id}>{JSON.stringify(person, null, 2)}</p>
-            ))}
         </Container>
     );
 };

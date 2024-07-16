@@ -18,7 +18,7 @@ class PersonController extends Controller
     {
         $person = Person::all();
 
-        return Inertia::render('Person/Index', ['person' => $person]);
+        return Inertia::render('Persons/Index', ['persons' => $person]);
     }
 
     /**
@@ -27,7 +27,7 @@ class PersonController extends Controller
     public function create()
     {
 
-        return inertia('Person/Create');
+        return inertia('Persons/Create');
     }
 
     /**
@@ -41,7 +41,7 @@ class PersonController extends Controller
         }
         Person::create($data);
 
-        return to_route('person.index')->with('success', 'Создан новый пользователь!');
+        return to_route('persons.index')->with('success', 'Создан новый пользователь!');
     }
 
     /**
@@ -60,7 +60,7 @@ class PersonController extends Controller
     public function edit(Person $person)
     {
 
-        return Inertia::render('Person/Edit', ['user' => $person]);
+        return Inertia::render('Persons/Edit', ['person' => $person]);
     }
 
     /**
@@ -74,18 +74,18 @@ class PersonController extends Controller
         }
         $person->update($data);
 
-        return to_route('person.index')->with('success', "Данные пользователя \"{$person->name}\" успешно обновлены!");
+        return to_route('persons.index')->with('success', "Данные пользователя \"{$person->name}\" успешно обновлены!");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function delete($id)
+    public function destroy($id)
     {
         $person = Person::findOrFail($id);
         $person->delete();
 
-        return redirect(route('person.index'));
+        return redirect(route('persons.index'));
     }
 
     public function ban($id)
@@ -93,7 +93,7 @@ class PersonController extends Controller
         $user = Person::findOrFail($id);
         $user->state->transitionTo(Banned::class);
 
-        return redirect(route('person.index'));
+        return redirect(route('persons.index'));
     }
 
     public function unban($id)
@@ -101,6 +101,6 @@ class PersonController extends Controller
         $user = Person::findOrFail($id);
         $user->state->transitionTo(Active::class);
 
-        return redirect(route('person.index'));
+        return redirect(route('persons.index'));
     }
 }
