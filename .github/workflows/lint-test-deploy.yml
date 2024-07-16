@@ -24,9 +24,9 @@ jobs:
         run: cp .env.example .env
       - name: Build
         uses: docker/bake-action@v4
+        with:
+          load: true
       - run: |
-          cd ..
-          php artisan key:generate
           make ci-test
 
       - name: Build and push Docker image
