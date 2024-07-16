@@ -35,10 +35,10 @@
         dest: ~/.env
 
     - name: Pull and start Docker Compose services
-      ignore_errors: true
-      command: docker-compose up -d
-      args:
-        chdir: ~/
+      community.docker.docker_compose_v2:
+      project_src: /somewhere/yourproject
+      files:
+      - docker-compose.yml
 
     - name: Restart Docker
       service:
