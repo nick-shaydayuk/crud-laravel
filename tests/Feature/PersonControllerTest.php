@@ -3,11 +3,11 @@
 namespace Tests\Feature;
 
 use App\Models\Person;
+use App\States\Active;
+use App\States\Banned;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Testing\AssertableInertia as Assert;
-use App\States\Banned;
-use App\States\Active;
 
 beforeEach(function () {
     $this->person = Person::factory()->create();
