@@ -24,7 +24,9 @@ jobs:
         run: cp .env.example .env
       - name: Build
         uses: docker/bake-action@v4
-      - run: make ci-test
+      - run: |
+          make genegate-key
+          make ci-test
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2

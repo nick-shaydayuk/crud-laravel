@@ -21,7 +21,6 @@ test:
 ci-test:
 	docker compose -f docker-compose.yml up -d db
 	sleep 3
-	make generate-key
 	docker compose -f docker-compose.yml run app make test
 generate-key:
 	php artisan key:generate
