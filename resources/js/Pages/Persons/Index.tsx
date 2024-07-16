@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Table, Container, Button, NavLink } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import ApplicationLogo from '@/Components/ApplicationLogo';
