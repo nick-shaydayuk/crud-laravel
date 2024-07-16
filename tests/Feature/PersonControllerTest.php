@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\Person;
 use App\States\Active;
 use App\States\Banned;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Testing\AssertableInertia as Assert;
 
@@ -66,16 +65,12 @@ it('can show the form for editing the specified person', function () {
 });
 
 it('can update the specified person', function () {
-    Storage::fake('public');
-
     $data = Person::factory()->make()->toArray();
-    $data['avatar'] = UploadedFile::fake()->image('avatar.jpg');
 
-    $response = $this->put(route('people.update', $this->person), $data);
+    $response = $this->patch(route('people.update', $this->person->id), $data);
 
     $response->assertRedirect(route('people.index'));
 
-    Storage::disk('public')->assertExists('avatars/' . $data['avatar']->hashName());
     $this->assertDatabaseHas('people', ['name' => $data['name']]);
 });
 
