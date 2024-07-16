@@ -49,9 +49,9 @@ class PersonController extends Controller
      */
     public function show(Person $person)
     {
-        // return inertia('Person/Show', [
-        //     'person' => new PersonResource($person)
-        // ]);
+        return inertia('Persons/Show', [
+            'person' => $person
+        ]);
     }
 
     /**

@@ -130,6 +130,13 @@ const Index: React.FC<IndexProps> = ({ persons }) => {
                                             {t("edit_user")}
                                         </Button>
                                         <Button
+                                            variant="warning"
+                                            href={route("persons.show", user.id)}
+                                            className="me-2"
+                                        >
+                                            {t("show_user")}
+                                        </Button>
+                                        <Button
                                             variant="danger"
                                             onClick={() =>
                                                 handleDelete(user.id)

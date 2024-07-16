@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "@inertiajs/react";
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Container } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
 interface Person {
@@ -18,7 +18,7 @@ interface EditProps {
 
 const Edit: React.FC<EditProps> = ({ person }) => {    
     const { t } = useTranslation();
-    const { data, setData, post, processing, errors } = useForm({
+    const { data, setData } = useForm({
         name: person.name ?? '',
         email: person.email ?? '',
         gender: person.gender ?? 'male',
@@ -26,37 +26,19 @@ const Edit: React.FC<EditProps> = ({ person }) => {
         avatar: person.avatar ?? null as File | null,
     });
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        const formData = new FormData();
-        Object.keys(data).forEach((key) => {
-            formData.append(
-                key,
-                data[key as keyof typeof data] as string | Blob
-            );
-        });
-        post(route("persons.update", { id: person.id }), {
-            data: formData,
-            headers: {
-                "X-HTTP-Method-Override": "PUT",
-            },
-        });
-    };
 
     return (
         <Container>
-            <h1 className="my-4">{t('edit_user')}</h1>
-            <Form onSubmit={handleSubmit} noValidate>
+            <h1 className="my-4">{t('show_user')}</h1>
+            <Form noValidate>
                 <Form.Group className="mb-3">
                     <Form.Label>{t('name')}</Form.Label>
                     <Form.Control
                         type="text"
                         value={data.name}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setData("name", e.target.value)}
                         placeholder={t('name')}
-                        
+                        readOnly
                     />
-                    {errors.name && <div className="text-danger">{errors.name}</div>}
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>{t('email')}</Form.Label>
@@ -65,45 +47,35 @@ const Edit: React.FC<EditProps> = ({ person }) => {
                         value={data.email}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setData("email", e.target.value)}
                         placeholder={t('email')}
-                        
+                        readOnly
                     />
-                    {errors.email && <div className="text-danger">{errors.email}</div>}
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>{t('gender')}</Form.Label>
-                    <Form.Select
+                    <Form.Control
                         value={data.gender}
-                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setData("gender", e.target.value)}
-                        
+                        type="text"
+                        readOnly                        
                     >
-                        <option value="male">{t('male')}</option>
-                        <option value="female">{t('female')}</option>
-                    </Form.Select>
-                    {errors.gender && <div className="text-danger">{errors.gender}</div>}
+                    </Form.Control>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>{t('birthday')}</Form.Label>
                     <Form.Control
                         type="date"
                         value={data.birthday}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setData("birthday", e.target.value)}
-                        
+                        readOnly
                     />
-                    {errors.birthday && <div className="text-danger">{errors.birthday}</div>}
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>{t('avatar')}</Form.Label>
                     <Form.Control
                         type="file"
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setData("avatar", e.target.files ? e.target.files[0] : null)}
+                        readOnly
                     />
-                    {errors.avatar && <div className="text-danger">{errors.avatar}</div>}
                     {person.avatar && <img src={`/storage/${person.avatar}`} alt="Avatar" style={{ width: '100px', marginTop: '10px' }} />}
                 </Form.Group>
-                <Button variant="primary" type="submit" disabled={processing}>
-                    {t('save')}
-                </Button>
-            </Form>
+             </Form>
         </Container>
     );
 };
