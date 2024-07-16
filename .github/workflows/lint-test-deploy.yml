@@ -25,7 +25,7 @@ jobs:
       - name: Build
         uses: docker/bake-action@v4
       - run: |
-          make genegate-key
+          php artisan key:generate
           make ci-test
 
       - name: Build and push Docker image
