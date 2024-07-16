@@ -17,4 +17,8 @@ lint:
 lint-fix:
 	./vendor/bin/duster fix
 test:
-	php artisan test
+	php artisan test --env=testing --compact
+ci-test:
+	docker compose -f docker-compose.yml up -d db
+	sleep 3
+	docker compose -f docker-compose.yml run app make test
