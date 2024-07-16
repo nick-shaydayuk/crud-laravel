@@ -34,12 +34,6 @@
         src: ../.env.example
         dest: ~/.env
 
-    - name: Pull and start Docker Compose services
-      community.docker.docker_compose_v2:
-      project_src: /somewhere/yourproject
-      files:
-      - docker-compose.yml
-
     - name: Restart Docker
       service:
         name: docker
