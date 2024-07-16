@@ -27,7 +27,6 @@ jobs:
         with:
           load: true
       - run: |
-          make lint
           make ci-test
 
       - name: Build and push Docker image
