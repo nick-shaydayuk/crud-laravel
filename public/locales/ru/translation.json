@@ -20,5 +20,10 @@
     "banned": "Забанен",
     "active": "Активен",
     "delete_user_forever": "Удалить навсегда",
-    "save": "Сохранить"
+    "save": "Сохранить",
+    "person": {
+        "person_one": "Пользователь",
+        "person_other": "Пользователи"
+    },
+    "file_not_picked": "Файл не выбран1"
 }

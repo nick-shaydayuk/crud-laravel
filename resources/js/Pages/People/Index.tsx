@@ -54,7 +54,7 @@ const Index: React.FC<IndexProps> = ({ persons }) => {
                         href={route("people.index")}
                         active={route().current("people.index")}
                     >
-                        Person
+                        {t("person.person", {count: 5})}
                     </NavLink>
                 </div>
             </div>
